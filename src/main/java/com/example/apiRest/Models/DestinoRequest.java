@@ -1,16 +1,7 @@
 package com.example.apiRest.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-@Entity
 public class DestinoRequest {
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int id;
         private String pDestino;
         private String pClimatica;
         private String pActividad;
@@ -18,6 +9,8 @@ public class DestinoRequest {
         private String dViaje;
         private String edad;
 
+
+        // Constructor
         public DestinoRequest(String pDestino, String pClimatica, String pActividad, String pAlojamiento, String dViaje, String edad) {
                 this.pDestino = pDestino;
                 this.pClimatica = pClimatica;
@@ -27,10 +20,7 @@ public class DestinoRequest {
                 this.edad = edad;
         }
 
-        public DestinoRequest() {
-
-        }
-
+        // Getters and Setters
 
         public String getpDestino() {
                 return pDestino;

@@ -1,14 +1,10 @@
 package com.example.apiRest.Controllers;
 
-
-
 import com.example.apiRest.Models.DestinoRequest;
+import com.example.apiRest.Models.DestinoResponse;
 import com.example.apiRest.Services.DestinoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -21,19 +17,16 @@ public class DestinoController {
         this.destinoService = destinoService;
     }
 
-    @PostMapping("/volverAtras")
-    public void volverAtras() {
-        destinoService.volverAtras();
-    }
-
     @PostMapping("/enviarDestino")
-    public ResponseEntity<List <DestinoRequest>> enviarDestino() {
-        List<DestinoRequest> respuestas = destinoService.enviarDestino();
-        return ResponseEntity.ok(respuestas);
-    }
+    public DestinoResponse enviarDestino(@RequestBody DestinoRequest destinoRequest) {
 
-    @GetMapping("/resultados")
-    public String[] getResultados() {
-        return new String[]{destinoService.destinoA, destinoService.destinoE};
+        return destinoService.enviarDestino(
+                destinoRequest.getpDestino(),
+                destinoRequest.getpClimatica(),
+                destinoRequest.getpActividad(),
+                destinoRequest.getpAlojamiento(),
+                destinoRequest.getdViaje(),
+                destinoRequest.getEdad()
+        );
     }
 }

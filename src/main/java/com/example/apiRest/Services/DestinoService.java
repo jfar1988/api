@@ -1,28 +1,23 @@
 package com.example.apiRest.Services;
 import com.example.apiRest.Models.DestinoRequest;
+import com.example.apiRest.Models.DestinoResponse;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class DestinoService {
 
+    // Método para enviar destino
+    public DestinoResponse enviarDestino(String pDestino, String pClimatica, String pActividad, String pAlojamiento, String dViaje, String edad) {
 
-    public String destinoA = "";
-    public String destinoE = "";
-
-
-
-    public DestinoRequest enviarDestino(String pDestino, String pClimatica, String pActividad, String pAlojamiento, String dViaje, String edad) {
-       DestinoRequest.setpDestino(pDestino);
-
-        return DestinoRequest;
+        DestinoRequest destinoRequest = new DestinoRequest(pDestino, pClimatica, pActividad, pAlojamiento, dViaje, edad);
 
         // Reseteamos destinos antes de procesar
-        destinoA = "";
-        destinoE = "";
+        String destinoA = "";
+        String destinoE = "";
 
         // Lógica principal
         switch (pDestino) {
+            // Si el destino es playa
             case "Playa":
                 if ("Caluroso".equals(pClimatica)) {
                     switch (dViaje) {
@@ -65,7 +60,7 @@ public class DestinoService {
                     }
                 }
                 break;
-
+            // Si el destino es Montaña
             case "Montaña":
                 if ("Frío".equals(pClimatica) && "1-2 semanas".equals(dViaje)) {
                     if ("Más de 50 años".equals(edad) && "Airbnb".equals(pAlojamiento)) {
@@ -93,7 +88,7 @@ public class DestinoService {
                     }
                 }
                 break;
-
+            // Si el destino es Ciudad
             case "Ciudad":
                 if ("Caluroso".equals(pClimatica) && "1-2 semanas".equals(dViaje) && "Más de 50 años".equals(edad) && "Hotel de Lujo".equals(pAlojamiento) && "Cultura y Museos".equals(pActividad)) {
                     destinoA = "Los Angeles";
@@ -126,5 +121,14 @@ public class DestinoService {
             destinoA = "Bora Bora";
             destinoE = "Dubái";
         }
+
+        // Crear el objeto con los destinos seleccionados
+        DestinoResponse destinoResponse = new DestinoResponse(destinoA, destinoE);
+
+        // Guardar los destinos de el usuario en la base de datos
+        //destinoRepository.save(destinoRequest);
+
+        // Asignamos los destinos
+        return destinoResponse;
     }
 }
