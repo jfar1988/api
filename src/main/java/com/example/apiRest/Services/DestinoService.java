@@ -1,10 +1,25 @@
 package com.example.apiRest.Services;
+import com.example.apiRest.Interfaces.BaseServiceInfo;
+import com.example.apiRest.Models.DestinoInfo;
 import com.example.apiRest.Models.DestinoRequest;
 import com.example.apiRest.Models.DestinoResponse;
+import com.example.apiRest.Models.User;
+import com.example.apiRest.Repositories.destinoInfoRespository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import com.example.apiRest.Repositories.destinoInfoRespository;
+
+import java.util.List;
 
 @Service
-public class DestinoService {
+public class DestinoService implements BaseServiceInfo {
+
+    private final destinoInfoRespository destinoInfoRespository;
+
+    public DestinoService(destinoInfoRespository destinoInfoRespository) {
+        this.destinoInfoRespository = destinoInfoRespository;
+    }
 
     // Método para enviar destino
     public DestinoResponse enviarDestino(String pDestino, String pClimatica, String pActividad, String pAlojamiento, String dViaje, String edad) {
@@ -130,5 +145,18 @@ public class DestinoService {
 
         // Asignamos los destinos
         return destinoResponse;
+    }
+
+//    public DestinoInfo saveDestinity(DestinoInfo destinoInfo) {
+//        return destinoInfoRespository.save(destinoInfo);
+//    }
+
+    @Override
+    public DestinoInfo create(DestinoInfo destinoInfo) {
+        return destinoInfoRespository.saveAndFlush(destinoInfo);
+    }
+
+    public List<DestinoInfo> searchName(String nombreDestino) {
+        return destinoInfoRespository.searchName(nombreDestino);
     }
 }
