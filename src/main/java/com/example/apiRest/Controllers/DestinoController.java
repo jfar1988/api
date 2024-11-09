@@ -52,14 +52,16 @@ public class DestinoController {
         return new ResponseEntity<>(destinoCreated, HttpStatus.OK);
     }
 
-    @GetMapping("/searchName/{nombreDestino}")
-    public ResponseEntity<List<DestinoInfo>> searchName(@PathVariable String nombreDestino) {
-        List<DestinoInfo> destinosInfor = new DestinoService(destinoInfoRespository).searchName(nombreDestino);
+    @GetMapping("/searchName/{destino1}/{destino2}")
+    public ResponseEntity<List<DestinoInfo>> searchName(@PathVariable String destino1, @PathVariable String destino2) {
+        List<DestinoInfo> destinosInfor = new DestinoService(destinoInfoRespository).searchName(destino1, destino2);
         if (destinosInfor.size() == 0) {
             return new ResponseEntity<>(destinosInfor, HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(destinosInfor, HttpStatus.OK);
     }
+
+
 
 
 

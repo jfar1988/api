@@ -15,6 +15,8 @@ public class DestinoInfo {
     private String idioma;
     private String lugarImperdible;
     private String comidaTipica;
+    private String img;
+    private String continente;
 
 
     public int getId() {
@@ -63,5 +65,21 @@ public class DestinoInfo {
 
     public void setComidaTipica(String comidaTipica) {
         this.comidaTipica = comidaTipica;
+    }
+
+    public String getContinente() {
+        return continente;
+    }
+
+    public void setContinente(String continente) {
+        this.continente = continente;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

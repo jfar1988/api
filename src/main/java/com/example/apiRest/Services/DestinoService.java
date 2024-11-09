@@ -156,7 +156,7 @@ public class DestinoService implements BaseServiceInfo {
         return destinoInfoRespository.saveAndFlush(destinoInfo);
     }
 
-    public List<DestinoInfo> searchName(String nombreDestino) {
-        return destinoInfoRespository.searchName(nombreDestino);
+    public List<DestinoInfo> searchName(String destino1, String destino2) {
+        return destinoInfoRespository.searchName(destino1, destino2);
     }
 }
